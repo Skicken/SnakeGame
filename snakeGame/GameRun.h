@@ -13,7 +13,6 @@ class GameRun : public gameState
     enum TileState {EMPTY,APPLE,SNAKE};
     const sf::Vector2f mapRenderPosition = sf::Vector2f(5.f, 40.f);
     bool inputBlocked = false;
-    float currentTick;
     std::vector<std::vector<sf::RectangleShape*>> backgroundMap;
     std::vector<std::vector<TileState>> tileState;
     GameState gameState;
@@ -21,7 +20,6 @@ class GameRun : public gameState
 
     tickClock* mainTickClock;
     tickClock* deathTickClock;
-    float maxTick;
     const float startMaxTick = 0.1f;
     const float deathAnimationTime = 3.f;
     std::vector<ParticleSystem*> segmentsDeathParticles;

@@ -116,6 +116,16 @@ void Player::Move()
 		}
 	}
 	this->passBorders();
+	assert(this->getOldTailPosition() != this->getTailPosition());
+	#ifdef  DEBUG
+	for (auto segment : snake)
+	{
+		assert(segment.position.x >= 0 && segment.position.x < *tiles);
+		assert(segment.position.y >= 0 && segment.position.y < *tiles);
+	}
+	#endif //  DEBUG
+
+
 }
 
 void Player::setOrigin()

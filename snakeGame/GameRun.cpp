@@ -6,9 +6,7 @@ GameRun::GameRun(uint8_t tiles)
 {
 	this->gameState = PLAYING;
 	this->tiles = tiles;
-	this->currentTick = 0.f;
 	this->player = new Player(sf::Vector2i(5,5),&this->tiles);
-	this->maxTick = this->startMaxTick;
 	this -> applePosition = this->unocuppiedConstant;
 
 	this->mainTickClock = new tickClock(this->startMaxTick);
@@ -145,11 +143,11 @@ void GameRun::PlayGameLoop()
 	this->playerInput();
 	if (this->mainTickClock->isOnTick()) {
 		eatAppleIfCan();
-		this->UpdateTileState();
 		this->player->Move();
+		this->UpdateTileState();
 		if (this->ticksForSpeed <= 0)
 		{
-			maxTick = std::max(this->maxTick - 0.0001f, 0.001f);
+			mainTickClock->setMaxTick(std::max(this->mainTickClock->getMaxTick() - 0.0001f, 0.025f));
 			setNextTimeSpeedUpTicks();
 		}
 		if (this->ticksForApple > 0)--this->ticksForApple;
@@ -160,6 +158,22 @@ void GameRun::PlayGameLoop()
 			this->deathTickClock->setMaxTick(this->deathAnimationTime / this->player->getSegments().size());
 			this->gameState = DIED;
 		}
+		#ifdef  DEBUG
+
+
+		for (int i = 0;i<tiles;i++)
+		{
+			for (int j = 0;j<tiles;j++)
+			{
+				if (j == player->getOldTailPosition().x && i == player->getOldTailPosition().y)std::cout << "T ";
+				else
+				std::cout << tileState[j][i] << " ";
+			}
+			std::cout << "\n";
+		}
+		//Sleep(100);
+		system("cls");
+		#endif 
 	}
 	this->mainTickClock->update();
 }
