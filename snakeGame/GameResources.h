@@ -19,12 +19,18 @@ class GameResources
 		std::uniform_int_distribution< int > distr(min, max);
 		return distr(generator);
 	}
+	const static void saveHighScore(uint32_t score);
+	const static uint32_t getHighScore() {
+		return highScore;
+	}
 	GameResources();
 	virtual ~GameResources();
 	private:
 	static void setDeathParticleStyle();
 	static void setSquareStyle();
+	static uint32_t highScore;
 	static const float bitmapPixelSize;
+	static void loadHighScore();
 
 	
 

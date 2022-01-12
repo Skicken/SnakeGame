@@ -77,10 +77,7 @@ sf::Vector2i Player::getTailPosition()
 	return snake.back().position;
 }
 
-void Player::setHeadPosition(sf::Vector2i position)
-{
-	snake.front().position = position;
-}
+
 
 std::vector<Segment>& Player::getSegments()
 {
@@ -115,17 +112,7 @@ void Player::Move()
 			this->snake[i].sprite.setRotation(DirectionToAngle(this->snake[i].spriteDirection));
 		}
 	}
-	this->passBorders();
-	assert(this->getOldTailPosition() != this->getTailPosition());
-	#ifdef  DEBUG
-	for (auto segment : snake)
-	{
-		assert(segment.position.x >= 0 && segment.position.x < *tiles);
-		assert(segment.position.y >= 0 && segment.position.y < *tiles);
-	}
-	#endif //  DEBUG
-
-
+	this->passBorderPosition(this->snake.front().position);
 }
 
 void Player::setOrigin()
@@ -151,7 +138,6 @@ const float Player::getSpriteOffsetWidth() { return snake.front().sprite.getGlob
 
 const float Player::getSpriteOffsetHeight() { return snake.front().sprite.getGlobalBounds().height; }
 
-const float Player::getSpriteScale() { return snake.front().sprite.getScale().x; }
 
 void Player::popHeadSegment() {
 
@@ -171,6 +157,7 @@ void Player::addSegment()
 {
 	sf::Vector2i segmentPosition = this->snake.back().position + DirectionToPoint(this->snake.back
 	().spriteDirection);
+	this->passBorderPosition(segmentPosition);
 	this->snake.back().sprite.setTexture(GameResources::segmentTexture);
 	this->snake.push_back(Segment{
 		 sf::Sprite(GameResources::tailTexture),
@@ -179,12 +166,12 @@ void Player::addSegment()
 		});
 }
 
-void Player::passBorders()
+void Player::passBorderPosition(sf::Vector2i& position)
 {
-	if (this->getHeadPosition().x >= *tiles) this->setHeadPosition(sf::Vector2i(0, this->getHeadPosition().y));
-	if (this->getHeadPosition().x < 0) this->setHeadPosition(sf::Vector2i(*tiles - 1, this->getHeadPosition().y));
-	if (this->getHeadPosition().y < 0) this->setHeadPosition(sf::Vector2i(this->getHeadPosition().x, *tiles - 1));
-	if (this->getHeadPosition().y >= *tiles) this->setHeadPosition(sf::Vector2i(this->getHeadPosition().x, 0));
+	if (position.x >= *tiles) position.x = 0;
+	if (position.x < 0) position.x = *tiles - 1;
+	if (position.y < 0) position.y = *tiles - 1;
+	if (position.y >= *tiles) position.y = 0;
 }
 
 

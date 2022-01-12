@@ -13,7 +13,7 @@ float GameResources::tilePixelSize;
 const float GameResources::bitmapPixelSize = 20.f;
 sf::RectangleShape GameResources::deathParticle;
 std::mt19937 GameResources::generator;
-
+uint32_t GameResources::highScore;
 void GameResources::initResources()
 {
 	tilePixelSize = 40.f;
@@ -25,6 +25,7 @@ void GameResources::initResources()
 	gameFont.loadFromFile("ka1.ttf");
 	std::random_device rd;
 	generator.seed(rd());
+	loadHighScore();
 	setSquareStyle();
 	setDeathParticleStyle();
 }
@@ -32,12 +33,22 @@ float GameResources::getScale()
 {
 	return tilePixelSize/bitmapPixelSize;
 }
+const void GameResources::saveHighScore(uint32_t score)
+{
+	std::fstream highScoreFile;
+	highScoreFile.open("data.bin", std::ios::binary | std::ios::out);
+	highScoreFile.write(reinterpret_cast<const char*>(&score),sizeof(score));
+	highScoreFile.close();
+	highScore = score;
+	return void();
+}
 GameResources::GameResources()
 {
 }
 
 GameResources::~GameResources()
 {
+
 }
 
 void GameResources::setDeathParticleStyle()
@@ -51,4 +62,16 @@ void GameResources::setSquareStyle()
 	backgroundMapSquare.setSize(sf::Vector2f(tilePixelSize, tilePixelSize));
 	backgroundMapSquare.setOutlineThickness(1);
 	backgroundMapSquare.setOutlineColor(sf::Color::Black);
+}
+
+void GameResources::loadHighScore()
+{	
+	std::fstream highScoreFile;
+	highScoreFile.open("data.bin", std::ios::in | std::ios::binary);
+	if (highScoreFile.good())
+	{
+		highScoreFile.read(reinterpret_cast<char*>(&highScore),sizeof(highScore));
+	}
+	else highScore = 0;
+	highScoreFile.close();
 }

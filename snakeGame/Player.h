@@ -20,19 +20,17 @@ class Player
 		direction getFacing();
 		sf::Vector2i getHeadPosition();
 		sf::Vector2i getTailPosition();
-		void setHeadPosition(sf::Vector2i position);
 		std::vector<Segment>& getSegments();
 		void Move();
 		void setOrigin();
 		float getCornerRotation(direction from, direction to);
 		const float getSpriteOffsetWidth();
 		const float getSpriteOffsetHeight();
-		const float getSpriteScale();
 		void popHeadSegment();
 		sf::Vector2f getRenderedSegmentPosition(Segment &segment);
 		void addSegment();
 		const sf::Vector2i getOldTailPosition() { return oldTailPosition; }
-		void passBorders();
+		void passBorderPosition(sf::Vector2i &position);
 	private:
 		std::vector<Segment> snake;
 		direction facing;

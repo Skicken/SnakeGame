@@ -27,7 +27,8 @@ class GameRun : public gameState
     
     Player *player;
     uint8_t tiles;
-    uint16_t score;
+    uint32_t score;
+    uint32_t highScore;
 
     int ticksForSpeed;
     int ticksForApple;

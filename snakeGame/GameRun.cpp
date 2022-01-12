@@ -18,6 +18,7 @@ GameRun::GameRun(uint8_t tiles)
 	for (int i = 0; i < tiles; i++) tileState[i].resize(tiles);
 
 	this->score = 0;
+	this->highScore = GameResources::getHighScore();
 	setBackground();
 
 	this->appleSprite.setTexture(GameResources::appleTexture);
@@ -61,6 +62,7 @@ void GameRun::update()
 		this->DeathGameLoop();
 		break;
 		case WAITINGFOR_END:
+			if (this->score > this->highScore)GameResources::saveHighScore(this->score);
 		this->DelayAfterForNewGame -= GameTime::deltaTime;
 		if (this->DelayAfterForNewGame <= 0) gameState = END;
 		break;
@@ -68,7 +70,6 @@ void GameRun::update()
 	for (auto &particleSystem : segmentsDeathParticles)
 	{
 		particleSystem->update();
-		if (particleSystem->toDestroy);
 	}
 }
 
@@ -109,20 +110,38 @@ void GameRun::render(sf::RenderWindow* window)
 	text.setCharacterSize(20);
 	text.setPosition(sf::Vector2f(10, 5));
 	window->draw(text);
+
 	//SCORE VALUE
 	std::string score = std::to_string(this->score);
 	text.setString(score);
 	text.setPosition(sf::Vector2f(105, 5));
 	window->draw(text);
+
 	//SPEED
 	text.setString("Speed");
-	text.setPosition(sf::Vector2f(260, 5));
+	text.setPosition(sf::Vector2f(240, 5));
 	window->draw(text);
+
 	//SPEED VALUE
 	std::string prc = std::to_string(getSpeedPercentage());
 	text.setString(prc);
-	text.setPosition(sf::Vector2f(365, 5));
+	text.setPosition(sf::Vector2f(335, 5));
 	window->draw(text);
+
+	//HIGH SCORE
+	text.setString("HIGHSCORE");
+	text.setPosition(sf::Vector2f(480, 5));
+	window->draw(text);
+
+	//HIGH SCORE VALUE
+	std::string highScore = std::to_string(this->highScore);
+	text.setString(highScore);
+	text.setPosition(sf::Vector2f(635, 5));
+	window->draw(text);
+
+
+
+
 }
 
 bool GameRun::gameHasEnded() { return gameState == END; }
@@ -158,22 +177,6 @@ void GameRun::PlayGameLoop()
 			this->deathTickClock->setMaxTick(this->deathAnimationTime / this->player->getSegments().size());
 			this->gameState = DIED;
 		}
-		#ifdef  DEBUG
-
-
-		for (int i = 0;i<tiles;i++)
-		{
-			for (int j = 0;j<tiles;j++)
-			{
-				if (j == player->getOldTailPosition().x && i == player->getOldTailPosition().y)std::cout << "T ";
-				else
-				std::cout << tileState[j][i] << " ";
-			}
-			std::cout << "\n";
-		}
-		//Sleep(100);
-		system("cls");
-		#endif 
 	}
 	this->mainTickClock->update();
 }

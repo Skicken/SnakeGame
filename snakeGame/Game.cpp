@@ -34,7 +34,8 @@ void Game::initVariables()
 void Game::initGame()
 {
 	if (this->game != nullptr) delete this->game;
-	this->game = new GameRun((this->videoMode.height - 40) / GameResources::tilePixelSize);
+	uint8_t tileNumber = (this->videoMode.height - 40) / GameResources::tilePixelSize;
+	this->game = new GameRun(tileNumber);
 
 }
 void Game::pollEvents()
