@@ -1,6 +1,6 @@
 #pragma once
-#include "GameResources.h"
-#include "GameTime.h"
+#include "gameUtilities/GameResources.h"
+#include "gameUtilities/GameTime.h"
 enum direction{ RIGHT = 0, DOWN = 1, LEFT = 2, UP = 3};
 struct Segment
 {

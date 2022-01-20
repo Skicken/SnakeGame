@@ -1,35 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="pch">
-      <UniqueIdentifier>{809C880B-ECA5-887C-7521-9F7CE129947C}</UniqueIdentifier>
+    <Filter Include="gameRun">
+      <UniqueIdentifier>{94B19FE6-0091-1E82-09A9-A958750785E3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameUtilities">
+      <UniqueIdentifier>{DB77769A-4738-F2D0-1073-3B4E7CF236AD}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameResources.h" />
-    <ClInclude Include="GameRun.h" />
-    <ClInclude Include="GameTime.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="gameState.h" />
-    <ClInclude Include="sgpch.h">
-      <Filter>pch</Filter>
+    <ClInclude Include="gameRun\GameRun.h">
+      <Filter>gameRun</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleSystem.h" />
-    <ClInclude Include="tickClock.h" />
+    <ClInclude Include="gameRun\Player.h">
+      <Filter>gameRun</Filter>
+    </ClInclude>
+    <ClInclude Include="gameUtilities\GameResources.h">
+      <Filter>gameUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="gameUtilities\GameTime.h">
+      <Filter>gameUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="gameUtilities\ParticleSystem.h">
+      <Filter>gameUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="gameUtilities\gameState.h">
+      <Filter>gameUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="gameUtilities\tickClock.h">
+      <Filter>gameUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="sgpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameResources.cpp" />
-    <ClCompile Include="GameRun.cpp" />
-    <ClCompile Include="GameTime.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="sgpch.cpp">
-      <Filter>pch</Filter>
+    <ClCompile Include="gameRun\GameRun.cpp">
+      <Filter>gameRun</Filter>
     </ClCompile>
+    <ClCompile Include="gameRun\Player.cpp">
+      <Filter>gameRun</Filter>
+    </ClCompile>
+    <ClCompile Include="gameUtilities\GameResources.cpp">
+      <Filter>gameUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="gameUtilities\GameTime.cpp">
+      <Filter>gameUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="gameUtilities\ParticleSystem.cpp">
+      <Filter>gameUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="gameUtilities\gameState.cpp">
+      <Filter>gameUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="gameUtilities\tickClock.cpp">
+      <Filter>gameUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="sgpch.cpp" />
     <ClCompile Include="snakeGame.cpp" />
-    <ClCompile Include="gameState.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
-    <ClCompile Include="tickClock.cpp" />
   </ItemGroup>
 </Project>

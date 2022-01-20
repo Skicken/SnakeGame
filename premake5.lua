@@ -7,6 +7,7 @@ workspace "SnakeGame"
     }
     startproject "snakeGame"
     outputdir = "%{cfg.buildcfg}"
+    SFML_VERSION = "SFML-2.5.1"
 
 project "snakeGame"
     location "snakeGame"
@@ -47,7 +48,7 @@ filter "configurations:Debug"
             "sfml-system-d.lib"
         }
         postbuildcommands {
-            ("{COPY} ../SFML-2.5.1/bin/**-d-2.dll %{cfg.targetdir}"),
+            ("{COPY} ../"..SFML_VERSION.."/bin/**-d-2.dll %{cfg.targetdir}"),
         }
 
 
@@ -63,6 +64,9 @@ filter "configurations:Release"
             "sfml-system.lib"
         }
         postbuildcommands {
-            ("{COPY} ../SFML-2.5.1/bin/**-2.dll %{cfg.targetdir}"),
+            ("{COPY} ../"..SFML_VERSION.."/bin/sfml-audio-2.dll %{cfg.targetdir}"),
+            ("{COPY} ../"..SFML_VERSION.."/bin/sfml-window-2.dll %{cfg.targetdir}"),
+            ("{COPY} ../"..SFML_VERSION.."/bin/sfml-graphics-2.dll %{cfg.targetdir}"),
+            ("{COPY} ../"..SFML_VERSION.."/bin/sfml-system-2.dll %{cfg.targetdir}"),
         }
 

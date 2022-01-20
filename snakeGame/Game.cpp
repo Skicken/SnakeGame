@@ -23,6 +23,7 @@ void Game::initWindow()
 	this->videoMode = sf::VideoMode(810,840);
 	this->window = new sf::RenderWindow(this->videoMode, "Snake game", sf::Style::Titlebar | sf::Style::Close );
 	initGame();
+	this->window->setFramerateLimit(30);
 }
 
 void Game::initVariables()

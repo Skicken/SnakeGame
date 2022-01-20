@@ -92,7 +92,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>sfml-audio.lib;sfml-window.lib;sfml-graphics.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -100,33 +100,36 @@
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\SFML-2.5.1\bin\**-2.dll\ (xcopy /Q /E /Y /I ..\SFML-2.5.1\bin\**-2.dll ..\bin\Release\snakeGame &gt; nul) ELSE (xcopy /Q /Y /I ..\SFML-2.5.1\bin\**-2.dll ..\bin\Release\snakeGame &gt; nul)</Command>
+      <Command>IF EXIST ..\SFML-2.5.1\bin\sfml-audio-2.dll\ (xcopy /Q /E /Y /I ..\SFML-2.5.1\bin\sfml-audio-2.dll ..\bin\Release\snakeGame &gt; nul) ELSE (xcopy /Q /Y /I ..\SFML-2.5.1\bin\sfml-audio-2.dll ..\bin\Release\snakeGame &gt; nul)
+IF EXIST ..\SFML-2.5.1\bin\sfml-window-2.dll\ (xcopy /Q /E /Y /I ..\SFML-2.5.1\bin\sfml-window-2.dll ..\bin\Release\snakeGame &gt; nul) ELSE (xcopy /Q /Y /I ..\SFML-2.5.1\bin\sfml-window-2.dll ..\bin\Release\snakeGame &gt; nul)
+IF EXIST ..\SFML-2.5.1\bin\sfml-graphics-2.dll\ (xcopy /Q /E /Y /I ..\SFML-2.5.1\bin\sfml-graphics-2.dll ..\bin\Release\snakeGame &gt; nul) ELSE (xcopy /Q /Y /I ..\SFML-2.5.1\bin\sfml-graphics-2.dll ..\bin\Release\snakeGame &gt; nul)
+IF EXIST ..\SFML-2.5.1\bin\sfml-system-2.dll\ (xcopy /Q /E /Y /I ..\SFML-2.5.1\bin\sfml-system-2.dll ..\bin\Release\snakeGame &gt; nul) ELSE (xcopy /Q /Y /I ..\SFML-2.5.1\bin\sfml-system-2.dll ..\bin\Release\snakeGame &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameResources.h" />
-    <ClInclude Include="GameRun.h" />
-    <ClInclude Include="GameTime.h" />
-    <ClInclude Include="ParticleSystem.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="gameState.h" />
+    <ClInclude Include="gameRun\GameRun.h" />
+    <ClInclude Include="gameRun\Player.h" />
+    <ClInclude Include="gameUtilities\GameResources.h" />
+    <ClInclude Include="gameUtilities\GameTime.h" />
+    <ClInclude Include="gameUtilities\ParticleSystem.h" />
+    <ClInclude Include="gameUtilities\gameState.h" />
+    <ClInclude Include="gameUtilities\tickClock.h" />
     <ClInclude Include="sgpch.h" />
-    <ClInclude Include="tickClock.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameResources.cpp" />
-    <ClCompile Include="GameRun.cpp" />
-    <ClCompile Include="GameTime.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="gameState.cpp" />
+    <ClCompile Include="gameRun\GameRun.cpp" />
+    <ClCompile Include="gameRun\Player.cpp" />
+    <ClCompile Include="gameUtilities\GameResources.cpp" />
+    <ClCompile Include="gameUtilities\GameTime.cpp" />
+    <ClCompile Include="gameUtilities\ParticleSystem.cpp" />
+    <ClCompile Include="gameUtilities\gameState.cpp" />
+    <ClCompile Include="gameUtilities\tickClock.cpp" />
     <ClCompile Include="sgpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="snakeGame.cpp" />
-    <ClCompile Include="tickClock.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

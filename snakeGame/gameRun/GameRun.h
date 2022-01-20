@@ -1,9 +1,9 @@
 #pragma once
-#include "gameState.h"
+#include "gameUtilities/gameState.h"
 #include "Player.h"
-#include "GameTime.h"
-#include "ParticleSystem.h"
-#include "tickClock.h"
+#include "gameUtilities/GameTime.h"
+#include "gameUtilities/ParticleSystem.h"
+#include "gameUtilities/tickClock.h"
 class GameRun : public gameState
 {   
 

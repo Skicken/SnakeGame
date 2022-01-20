@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GameRun.h"
-#include "GameTime.h"
-#include "GameResources.h"
+#include "gameRun/GameRun.h"
+#include "gameUtilities/GameTime.h"
+#include "gameUtilities/GameResources.h"
 class Game
 {
 	private:
